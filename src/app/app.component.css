@@ -1,0 +1,118 @@
+  .bacground-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+  }
+  
+  .bacground-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../public/assets/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: brightness(40%);
+    z-index: -1; /* Places it behind content */
+  }
+  
+  .header {
+    max-width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensures space between the logo and the menu */
+    padding: 0 16px; /* Adds some padding around the header content */
+    margin: 0 auto;
+  }
+  
+  .logo {
+    background-image: url("../../public/assets/netflix-logo.png");
+    background-size: contain; /* Makes the logo fit without distortion */
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100px; /* Adjust to your desired height */
+    width: 120px; /* Adjust to your desired width */
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Ensures the menu items are in a row */
+    align-items: center; /* Vertically center-align the menu items */
+  }
+  
+  li {
+    margin-left: 20px; /* Adds spacing between menu items */
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  .sign-in {
+    background-color: #e50914;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .content h1 {
+    color: white;
+    font-size: 65px;
+    margin-bottom: 20px;
+  }
+  
+  .content h2 {
+    margin-top: 10px;
+    color: white;
+    font-size: 20px;
+  }
+  
+  .content p {
+    color: white;
+    font-size: 20px;
+  }
+
+  .content {
+    max-width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  form {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  input[type="email"] {
+    padding: 10px;
+    border-radius: 4px;
+    margin-right: 10px;
+    width: 50%;
+    border: none;
+  }
+  
+  button[type="submit"] {
+    background-color: #e50914;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+  }
+  
