@@ -1,23 +1,13 @@
-<div class="bacground-container">
+<!-- <div class="bacground-container">
   <div class="header">
     <div class="logo"></div>
     <ul>
       <li><a href="#">News</a></li>
-      <button class="sign-in">Sign In</button>
+      <button (click)="SignIn()" class="sign-in">Sign In</button>
     </ul>
   </div>
-  <div class="content">
-    <h1>Unlimited movies, TV shows, and more</h1>
-    <h2>Starts at $6.99. Cancel anytime.</h2>
-    <p>
-      Ready to watch? Enter your email to create or restart your membership.
-    </p>
-    <form>
-      <input type="email" placeholder="Email address" />
-      <button class="sign-in">Get Started</button>
-    </form>
-  </div>
-</div>
-<div>
-  <h1>Welcome to Netflix Replica</h1>
-</div>
+  <app-mainpage *ngIf="showMain"></app-mainpage>
+  <app-login *ngIf="showLogin"></app-login>
+</div> -->
+
+<app-movie-list></app-movie-list>
