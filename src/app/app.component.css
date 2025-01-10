@@ -29,12 +29,12 @@
   }
   
   .logo {
-    background-image: url("../../public/assets/netflix-logo.png");
+    background-image: url("../../public/assets/netflix.svg");
     background-size: contain; /* Makes the logo fit without distortion */
     background-position: center;
     background-repeat: no-repeat;
     height: 100px; /* Adjust to your desired height */
-    width: 120px; /* Adjust to your desired width */
+    width: 170px; /* Adjust to your desired width */
   }
   
   ul {

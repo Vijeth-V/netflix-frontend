@@ -7,8 +7,9 @@
   }
   
   .login-card {
-    background-color: rgba(34, 34, 34, 0.8);
+    background-color: rgba(0, 0, 0, 0.7);
     padding: 40px;
+    padding-bottom: 120px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     width: 320px;
@@ -71,6 +72,7 @@
     font-size: 16px;
     font-weight: bold;
     color: white;
+    background-color: rgba(141, 139, 139, 0.8);
     border: none;
     border-radius: 4px;
     cursor: pointer;
