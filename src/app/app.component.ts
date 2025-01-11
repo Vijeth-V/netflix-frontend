@@ -9,12 +9,12 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'netflix-replica';
 
-  showMain = true;
-  showLogin = false;
+  // showMain = true;
+  // showLogin = false;
 
-  SignIn() {
-    console.log('Signin clicked');
-    this.showMain = false;
-    this.showLogin = true;
-  }
+  // SignIn() {
+  //   console.log('Signin clicked');
+  //   this.showMain = false;
+  //   this.showLogin = true;
+  // }
 }

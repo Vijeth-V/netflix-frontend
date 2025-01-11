@@ -1,15 +1,10 @@
-<div class="bacground-container">
-  <div class="header">
-    <div class="logo"></div>
-    <ul>
-      <li><a href="#">News</a></li>
-      <button (click)="SignIn()" class="sign-in">Sign In</button>
-    </ul>
-  </div>
-  <app-mainpage *ngIf="showMain"></app-mainpage>
-  <app-login *ngIf="showLogin"></app-login>
+<div class="background-container">
+  <app-nav-bar></app-nav-bar>
+  <router-outlet></router-outlet>
 </div>
 
 <!-- <app-movie-list></app-movie-list> -->
 
 <!-- <app-step1></app-step1> -->
+
+<!-- <app-movie-details></app-movie-details> -->

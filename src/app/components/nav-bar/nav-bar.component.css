@@ -1,0 +1,26 @@
+.header {
+    max-width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensures space between the logo and the menu */
+    padding: 0 16px; /* Adds some padding around the header content */
+    margin: 0 auto;
+  }
+  
+  .logo {
+    background-image: url("../../../../public/assets/netflix.svg");
+    background-size: contain; /* Makes the logo fit without distortion */
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100px; /* Adjust to your desired height */
+    width: 170px; /* Adjust to your desired width */
+  }
+
+  .sign-in {
+    background-color: #e50914;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+  }

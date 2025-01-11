@@ -22,4 +22,8 @@ export class MovieService {
       })
     );
   }
+
+  signIn() {
+    console.log('Signin service triggered');
+  }
 }

@@ -19,6 +19,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     Step2Component,
     Step3Component,
     MainRegisterComponent,
+    MovieDetailsComponent,
+    NavBarComponent,
   ],
   imports: [
     BrowserModule,
