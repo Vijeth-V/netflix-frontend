@@ -1,26 +1,43 @@
 <div class="login-container">
   <div class="login-card">
     <h1 class="login-title">Sign In</h1>
-    <form>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <input
           type="email"
           id="email"
           placeholder="Email or Phone Number"
           class="form-control"
+          formControlName="email"
           required
         />
+        <div
+          class="errors"
+          *ngIf="!email?.valid && (email?.touched || email?.dirty)"
+        >
+          <div [hidden]="!email?.errors?.['required']">Email is required</div>
+          <div [hidden]="!email?.errors?.['minlength']">
+            Minimum length is 10
+          </div>
+        </div>
       </div>
       <div class="form-group">
         <input
           type="password"
-          id="password"
+          id="pwd"
           placeholder="Password"
           class="form-control"
+          formControlName="pwd"
           required
         />
+        <div class="errors" *ngIf="!pwd?.valid && (pwd?.touched || pwd?.dirty)">
+          <div [hidden]="!pwd?.errors?.['required']">Password is required</div>
+          <div [hidden]="!pwd?.errors?.['minlength']">Minimum length is 8</div>
+        </div>
       </div>
-      <button type="submit" class="btn-submit">Sign In</button>
+      <button type="submit" [disabled]="!loginForm.valid" class="btn-submit">
+        Sign In
+      </button>
       <h3 style="color: white">Or</h3>
       <button class="btn-oauth">Use SignIn code</button>
       <div class="extra-options">

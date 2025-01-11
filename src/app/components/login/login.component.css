@@ -82,6 +82,13 @@
     background-color: #f40612;
   }
   
+  .btn-submit:disabled {
+    background-color: #999; 
+    color: #ccc; 
+    cursor: not-allowed; 
+    opacity: 0.6; 
+  }
+  
   .extra-options {
     margin-top: 20px;
     text-align: center;
@@ -104,3 +111,7 @@
     color: white
   }
   
+  .errors{
+    font-size: smaller;
+    color: #f40612;
+  }
