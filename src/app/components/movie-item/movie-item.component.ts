@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie-item',
@@ -10,5 +11,10 @@ import { MovieService } from '../../services/movie.service';
 })
 export class MovieItemComponent {
   @Input() movie: any = [];
-  constructor(private movieService: MovieService) {}
+  constructor(private movieService: MovieService, private router: Router) {}
+
+  movieDetails(movie: any) {
+    console.log('Movie Details Triggered', movie);
+    this.router.navigate(['/movieDetails'], { queryParams: { id: movie.id } });
+  }
 }

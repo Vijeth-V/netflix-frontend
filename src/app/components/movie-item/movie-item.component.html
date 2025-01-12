@@ -19,6 +19,8 @@
       <span class="tag rating">{{ movie.vote_average }}</span>
     </div>
     <p class="overview">{{ movie.overview }}</p>
-    <button class="details-btn">More Details</button>
+    <button (click)="movieDetails(movie)" class="details-btn">
+      More Details
+    </button>
   </div>
 </div>

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { movieRes, Result } from './interfaces/movies.interface';
+import { movieRes, Result, movieDetails } from './interfaces/movies.interface';
 
 import { Subject, tap } from 'rxjs';
 
@@ -8,22 +8,34 @@ import { Subject, tap } from 'rxjs';
   providedIn: 'root',
 })
 export class MovieService {
-  // baseUrl = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc';
-  baseUrl =
-    'https://api.themoviedb.org/3/movie/popular?api_key=7f91731a4b8758467428c3dd21f0adf4';
+  baseUrl = 'https://api.themoviedb.org/3/movie/';
+  api_key = '7f91731a4b8758467428c3dd21f0adf4';
+
   movieSubject$ = new Subject<movieRes>();
+  movieDetailsSubject$ = new Subject();
 
   constructor(private http: HttpClient) {}
 
   getMovies(page: number) {
-    return this.http.get<movieRes>(`${this.baseUrl}&page=${page}`).pipe(
-      tap((res: any) => {
-        this.movieSubject$.next(res);
-      })
-    );
+    return this.http
+      .get<movieRes>(
+        `${this.baseUrl}popular?api_key=${this.api_key}&page=${page}`
+      )
+      .pipe(
+        tap((res: any) => {
+          this.movieSubject$.next(res);
+        })
+      );
   }
 
-  signIn() {
-    console.log('Signin service triggered');
+  getMovieDetails(id: number) {
+    console.log('Get Movie details By id is trigered', id);
+    return this.http
+      .get<movieDetails>(`${this.baseUrl}${id}?api_key=${this.api_key}`)
+      .pipe(
+        tap((res: any) => {
+          this.movieDetailsSubject$.next(res);
+        })
+      );
   }
 }
