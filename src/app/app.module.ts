@@ -21,6 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { YouTubePlayer } from '@angular/youtube-player';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    YouTubePlayer,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

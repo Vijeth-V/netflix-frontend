@@ -13,6 +13,7 @@ export class MovieService {
 
   movieSubject$ = new Subject<movieRes>();
   movieDetailsSubject$ = new Subject();
+  movieVideoSubject$ = new Subject();
 
   constructor(private http: HttpClient) {}
 
@@ -27,14 +28,24 @@ export class MovieService {
         })
       );
   }
-
+  // https://api.themoviedb.org/3/movie/{movie_id}/videos
   getMovieDetails(id: number) {
-    console.log('Get Movie details By id is trigered', id);
     return this.http
       .get<movieDetails>(`${this.baseUrl}${id}?api_key=${this.api_key}`)
       .pipe(
         tap((res: any) => {
           this.movieDetailsSubject$.next(res);
+        })
+      );
+  }
+
+  getVideo(id: number) {
+    console.log('Get Video details By id is trigered', id);
+    return this.http
+      .get(`${this.baseUrl}${id}/videos?api_key=${this.api_key}`)
+      .pipe(
+        tap((res: any) => {
+          this.movieVideoSubject$.next(res);
         })
       );
   }

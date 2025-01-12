@@ -14,6 +14,9 @@ export class MovieDetailsComponent implements OnInit {
   bgImageVariable = '';
 
   movieDetails: movieDetails | null = null;
+  videoDetails: [] | null = null;
+  videoInfo: any;
+  isPlayerVisible = false;
 
   constructor(
     private movieService: MovieService,
@@ -36,5 +39,26 @@ export class MovieDetailsComponent implements OnInit {
         console.log('this.movieDetails', this.movieDetails);
       });
     }
+  }
+
+  getVideo(id: number | null) {
+    if (id) {
+      this.movieService.getVideo(id).subscribe((res: any) => {
+        console.log('Get Video Info', res);
+        this.videoDetails = res.results;
+
+        console.log('this.videoDetails', this.videoDetails);
+
+        if (this.videoDetails) {
+          this.videoInfo = this.videoDetails.find(() => true);
+          console.log('firstObject', this.videoInfo.key);
+          this.isPlayerVisible = true;
+        }
+      });
+    }
+  }
+
+  closePlayer() {
+    this.isPlayerVisible = false;
   }
 }

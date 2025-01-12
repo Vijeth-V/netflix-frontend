@@ -26,7 +26,16 @@
 
     <div class="buttons">
       <button class="play-button">Play now</button>
-      <button class="trailer-button">Trailer</button>
+      <button (click)="getVideo(movieDetails.id)" class="trailer-button">
+        Trailer
+      </button>
     </div>
+  </div>
+</div>
+
+<div *ngIf="isPlayerVisible" class="youtube-modal" (click)="closePlayer()">
+  <div class="youtube-player-container" (click)="$event.stopPropagation()">
+    <youtube-player [videoId]="videoInfo.key" placeholderImageQuality="high">
+    </youtube-player>
   </div>
 </div>
