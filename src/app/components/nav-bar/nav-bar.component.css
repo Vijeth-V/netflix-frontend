@@ -7,13 +7,25 @@
     margin: 0 auto;
   }
   
+  .navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    color: rgba(0, 0, 0, 0.3);
+    /* position: fixed; */
+    top: 0;
+    left: 0;
+    z-index: 1;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
   .logo {
     background-image: url("../../../../public/assets/netflix.svg");
-    background-size: contain; /* Makes the logo fit without distortion */
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100px; /* Adjust to your desired height */
-    width: 170px; /* Adjust to your desired width */
+    height: 100px;
+    width: 170px; 
   }
 
   .sign-in {

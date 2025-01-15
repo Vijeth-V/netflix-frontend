@@ -1,7 +1,6 @@
 <div class="header">
-  <div class="logo"></div>
+  <div class="logo" (click)="navigateToHome()"></div>
   <ul>
-    <!-- <button (click)="signIn()" class="sign-in">Sign In</button> -->
-    <a [routerLink]="['login']"> <button class="sign-in">Sign In</button></a>
+    <button (click)="signIn()" class="sign-in">{{ buttonName }}</button>
   </ul>
 </div>

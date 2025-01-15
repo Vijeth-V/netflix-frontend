@@ -1,7 +1,8 @@
 <div class="container">
-  <ul class="list">
-    <li class="item" *ngFor="let movie of movies">
+  <app-nav-bar [buttonName]="'Log Out'"></app-nav-bar>
+  <div class="list">
+    <div class="item" *ngFor="let movie of movies">
       <app-movie-item [movie]="movie"></app-movie-item>
-    </li>
-  </ul>
+    </div>
+  </div>
 </div>

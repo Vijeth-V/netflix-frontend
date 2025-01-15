@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
 
@@ -12,8 +12,13 @@ import { LoginComponent } from '../login/login.component';
 export class NavBarComponent {
   constructor(private router: Router) {}
 
+  @Input() buttonName: string = 'Sign In';
+
   signIn() {
     console.log('Signin clicked');
     this.router.navigate(['/login']);
+  }
+  navigateToHome() {
+    this.router.navigate(['/home']);
   }
 }
