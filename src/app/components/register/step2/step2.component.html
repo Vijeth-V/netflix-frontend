@@ -1,1 +1,54 @@
-<p>step2 works!</p>
+<div class="register-container">
+  <div class="register-card">
+    <h4>Step 2 of 3</h4>
+    <h1 class="register-title">Create a Username and add your Tmdb API_key</h1>
+    <h3>Just a few more steps and you are done!</h3>
+    <h3>We hate paperwork, too.</h3>
+    <form [formGroup]="tmdbForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <input
+          type="text"
+          id="userName"
+          placeholder="Enter your Username"
+          formControlName="userName"
+          class="form-control"
+        />
+        <div
+          class="errors"
+          *ngIf="!userName?.valid && (userName?.touched || userName?.dirty)"
+        >
+          <div [hidden]="!userName?.errors?.['required']">
+            Username is required
+          </div>
+          <div [hidden]="!userName?.errors?.['minlength']">
+            Minimum length is 10
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          id="apiKey"
+          placeholder="Enter TMDB API key"
+          formControlName="apiKey"
+          class="form-control"
+        />
+        <div
+          class="errors"
+          *ngIf="!apiKey?.valid && (apiKey?.touched || apiKey?.dirty)"
+        >
+          <div [hidden]="!apiKey?.errors?.['required']">
+            API Key is required
+          </div>
+          <div [hidden]="!apiKey?.errors?.['minlength']">
+            Minimum length is 8
+          </div>
+        </div>
+      </div>
+
+      <button type="Submit" [disabled]="!tmdbForm.valid" class="btn-submit">
+        Next
+      </button>
+    </form>
+  </div>
+</div>

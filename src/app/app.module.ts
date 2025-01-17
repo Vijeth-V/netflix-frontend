@@ -12,7 +12,6 @@ import { Step1Component } from './components/register/step1/step1.component';
 import { Step2Component } from './components/register/step2/step2.component';
 import { Step3Component } from './components/register/step3/step3.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { MainRegisterComponent } from './components/register/main-register/main-register.component';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -33,7 +32,6 @@ import { YouTubePlayer } from '@angular/youtube-player';
     Step1Component,
     Step2Component,
     Step3Component,
-    MainRegisterComponent,
     MovieDetailsComponent,
     NavBarComponent,
   ],

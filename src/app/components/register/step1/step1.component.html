@@ -1,6 +1,9 @@
 <div class="register-container">
   <div class="register-card">
-    <h1 class="register-title">Register</h1>
+    <h4>Step 1 of 3</h4>
+    <h1 class="register-title">Create a password to start your membership</h1>
+    <h3>Just a few more steps and you are done!</h3>
+    <h3>We hate paperwork, too.</h3>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <input
@@ -9,13 +12,14 @@
           placeholder="Email or phone number"
           formControlName="email"
           class="form-control"
-          required
         />
         <div
           class="errors"
           *ngIf="!email?.valid && (email?.touched || email?.dirty)"
         >
-          <div [hidden]="!email?.errors?.['required']">Email is required</div>
+          <div [hidden]="!email?.errors?.['required']">
+            Email or phone number is required
+          </div>
           <div [hidden]="!email?.errors?.['minlength']">
             Minimum length is 10
           </div>
@@ -36,7 +40,7 @@
       </div>
 
       <button type="Submit" [disabled]="!registerForm.valid" class="btn-submit">
-        Submit
+        Next
       </button>
     </form>
   </div>

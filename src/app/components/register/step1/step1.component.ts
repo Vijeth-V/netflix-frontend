@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-step1',
@@ -24,7 +25,7 @@ export class Step1Component implements OnInit {
     return this.registerForm.get('pwd');
   }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private router: Router) {}
 
   ngOnInit() {
     // this.registerForm = this.fb.group({
@@ -42,5 +43,6 @@ export class Step1Component implements OnInit {
   }
   onSubmit() {
     console.log(this.registerForm.value);
+    this.router.navigate(['/register/step2']);
   }
 }

@@ -1,1 +1,28 @@
-<p>step3 works!</p>
+<div class="register-container">
+  <div class="register-card">
+    <h4>Step 3 of 3</h4>
+    <h1 class="register-title">Choose the Plan that's right for you.</h1>
+    <h3>Watch all you want Ad-free.</h3>
+    <h3>Recommendations just for you.</h3>
+    <h3>Change or cancel your plan anytime.</h3>
+
+    <div class="cards-container">
+      <div
+        class="card"
+        *ngFor="let plan of plans"
+        [ngClass]="{ 'selected-card': selectedPlan === plan }"
+        (click)="selectPlan(plan)"
+      >
+        <div class="container">
+          <h4>
+            <b>{{ plan.planName }}</b>
+          </h4>
+          <p>Price: {{ plan.monthlyPrice }}</p>
+          <p>Video Quality: {{ plan.videoQuality }}</p>
+          <p>Resolution: {{ plan.resolution }}</p>
+        </div>
+      </div>
+    </div>
+    <button class="btn-submit" (click)="onSubmit()">Submit</button>
+  </div>
+</div>
