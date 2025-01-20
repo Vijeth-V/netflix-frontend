@@ -18,8 +18,8 @@ const routes: Routes = [
   {
     path: 'movieList',
     loadChildren: () =>
-      import('./components/movie-list/movie-list.component').then(
-        (m) => m.MovieListComponent
+      import('./components/movie-list/movie-list.module').then(
+        (m) => m.MovieListModule
       ),
   },
 
@@ -27,8 +27,8 @@ const routes: Routes = [
   {
     path: 'movieDetails',
     loadChildren: () =>
-      import('./components/movie-details/movie-details.component').then(
-        (m) => m.MovieDetailsComponent
+      import('./components/movie-details/movie-details.module').then(
+        (m) => m.MovieDetailsModule
       ),
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
