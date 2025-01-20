@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './step3.component.html',
   styleUrl: './step3.component.css',
 })
-export class Step3Component {
+export class Step3Component implements OnInit {
   plans = [
     {
       planName: 'Basic',
@@ -30,14 +30,22 @@ export class Step3Component {
     },
   ];
 
+  credentials: {} | undefined;
+
   constructor(private router: Router) {}
 
   selectedPlan: any = null;
+
+  ngOnInit() {
+    let credentials = history.state.data;
+    console.log('Credentials from step3', credentials);
+  }
 
   selectPlan(plan: any) {
     this.selectedPlan = plan;
   }
 
+  // Make an auth API call here
   onSubmit() {
     if (this.selectedPlan) {
       console.log('Selected Plan:', this.selectedPlan);

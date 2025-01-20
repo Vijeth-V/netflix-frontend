@@ -25,6 +25,8 @@ export class Step2Component implements OnInit {
     return this.tmdbForm.get('apiKey');
   }
 
+  registrationData: { Email: string; Password: string } | undefined;
+
   constructor(private fb: FormBuilder, private router: Router) {}
 
   ngOnInit() {
@@ -38,10 +40,27 @@ export class Step2Component implements OnInit {
         Validators.minLength(8),
       ]),
     });
+    this.recieveData();
+  }
+
+  recieveData() {
+    this.registrationData = {
+      Email: history.state.data.email,
+      Password: history.state.data.pwd,
+    };
   }
 
   onSubmit() {
-    console.log(this.tmdbForm.value);
-    this.router.navigate(['/register/step3']);
+    if (this.registrationData && this.tmdbForm.value) {
+      const credentials = {
+        Email: this.registrationData.Email,
+        password: this.registrationData.Password,
+        userName: this.tmdbForm.value.userName,
+        tmbdAPIKey: this.tmdbForm.value.apiKey,
+      };
+      this.router.navigate(['/register/step3'], {
+        state: { data: credentials },
+      });
+    }
   }
 }

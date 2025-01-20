@@ -43,6 +43,8 @@ export class Step1Component implements OnInit {
   }
   onSubmit() {
     console.log(this.registerForm.value);
-    this.router.navigate(['/register/step2']);
+    this.router.navigate(['/register/step2'], {
+      state: { data: this.registerForm.value },
+    });
   }
 }
