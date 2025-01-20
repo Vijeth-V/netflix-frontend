@@ -1,6 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { movieRes, Result, movieDetails } from './interfaces/movies.interface';
+import {
+  movieRes,
+  Result,
+  movieDetails,
+} from '../core/interfaces/movies.interface';
 
 import { Subject, tap } from 'rxjs';
 
