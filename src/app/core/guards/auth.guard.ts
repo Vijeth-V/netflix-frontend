@@ -7,14 +7,6 @@ import {
 import { Injectable } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 
-// export const authGuard: CanActivateFn = (
-//   route: ActivatedRouteSnapshot,
-//   state: RouterStateSnapshot
-// ) => {
-
-//   return true;
-// };
-
 @Injectable({
   providedIn: 'root',
 })

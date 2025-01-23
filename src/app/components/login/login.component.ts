@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -17,15 +18,21 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
+  loginMsg = '';
+
   get email() {
     return this.loginForm.get('email');
   }
 
-  get pwd() {
-    return this.loginForm.get('pwd');
+  get password() {
+    return this.loginForm.get('password');
   }
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     // this.loginForm = this.fb.group({
@@ -38,12 +45,26 @@ export class LoginComponent implements OnInit {
         Validators.required,
         Validators.minLength(10),
       ]),
-      pwd: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+      ]),
     });
   }
 
-  onSubmit() {
+  login() {
     console.log(this.loginForm.value);
-    this.router.navigate(['/movieList']);
+    this.authService.signin(this.loginForm.value).subscribe(
+      (res) => {
+        console.log('Login API successfull');
+        this.loginMsg = '';
+      },
+      (err) => {
+        console.log('Login API failed', err);
+        this.loginMsg = 'Invalid Login credentials check email ID and password';
+      }
+    );
+
+    // this.router.navigate(['/movieList']);
   }
 }

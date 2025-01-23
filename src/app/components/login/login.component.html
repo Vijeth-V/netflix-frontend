@@ -1,7 +1,7 @@
 <div class="login-container">
   <div class="login-card">
     <h1 class="login-title">Sign In</h1>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
       <div class="form-group">
         <input
           type="email"
@@ -24,17 +24,25 @@
       <div class="form-group">
         <input
           type="password"
-          id="pwd"
+          id="password"
           placeholder="Password"
           class="form-control"
-          formControlName="pwd"
+          formControlName="password"
           required
         />
-        <div class="errors" *ngIf="!pwd?.valid && (pwd?.touched || pwd?.dirty)">
-          <div [hidden]="!pwd?.errors?.['required']">Password is required</div>
-          <div [hidden]="!pwd?.errors?.['minlength']">Minimum length is 8</div>
+        <div
+          class="errors"
+          *ngIf="!password?.valid && (password?.touched || password?.dirty)"
+        >
+          <div [hidden]="!password?.errors?.['required']">
+            Password is required
+          </div>
+          <div [hidden]="!password?.errors?.['minlength']">
+            Minimum length is 8
+          </div>
         </div>
       </div>
+      <div class="errors" *ngIf="loginMsg">{{ loginMsg }}</div>
       <button type="submit" [disabled]="!loginForm.valid" class="btn-submit">
         Sign In
       </button>

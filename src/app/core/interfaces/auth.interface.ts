@@ -17,3 +17,8 @@ export enum UserRole {
   SUPERUSER = 'SUPERUSER',
   ADMIN = 'ADMIN',
 }
+
+export interface LoginDto {
+  email: string;
+  password: string;
+}

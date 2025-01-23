@@ -1,7 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject, tap } from 'rxjs';
-import { AppUserAuth, AuthDto } from '../core/interfaces/auth.interface';
+import { BehaviorSubject, catchError, Subject, tap, throwError } from 'rxjs';
+import {
+  AppUserAuth,
+  AuthDto,
+  LoginDto,
+} from '../core/interfaces/auth.interface';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 
@@ -24,12 +28,26 @@ export class AuthService {
         tap(({ accessToken, role }: AuthDto) => {
           this.setUserValueByToken({ accessToken, role });
           this.router.navigate(['/movieList']);
+        }),
+        catchError((error) => {
+          return throwError('Something went wrong during sign up!', error);
         })
       );
   }
 
+  //Login API service
   signin(signin_body: object) {
-    console.log('signin_body from service', signin_body);
+    return this.http
+      .post<AuthDto>(`${this.authServerPath}/signin`, signin_body)
+      .pipe(
+        tap(({ accessToken, role }: AuthDto) => {
+          this.setUserValueByToken({ accessToken, role });
+          this.router.navigate(['/movieList']);
+        }),
+        catchError((error) => {
+          return throwError('Something went wrong during sign in!', error);
+        })
+      );
   }
 
   //Verifies if its a new user during signup
@@ -37,6 +55,7 @@ export class AuthService {
     return this.http.post(`${this.authServerPath}/check-email`, email);
   }
 
+  //Decoding and storing access token
   private setUserValueByToken({ accessToken, role }: AuthDto) {
     localStorage.setItem('access_token', accessToken);
 
