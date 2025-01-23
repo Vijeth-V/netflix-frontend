@@ -7,8 +7,13 @@
     <p>
       Ready to watch? Enter your email to create or restart your membership.
     </p>
-    <form>
-      <input type="email" placeholder="Email address" />
+    <form [formGroup]="homeForm">
+      <input
+        type="email"
+        id="email"
+        placeholder="Email address"
+        formControlName="email"
+      />
       <button class="sign-in" (click)="register()">Get Started</button>
     </form>
   </div>

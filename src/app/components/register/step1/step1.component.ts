@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-step1',
@@ -25,7 +26,13 @@ export class Step1Component implements OnInit {
     return this.registerForm.get('pwd');
   }
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  API_payload: { email: string } | undefined;
+
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     // this.registerForm = this.fb.group({
@@ -34,7 +41,7 @@ export class Step1Component implements OnInit {
     // });
 
     this.registerForm = new FormGroup({
-      email: new FormControl('', [
+      email: new FormControl(history.state.data, [
         Validators.required,
         Validators.minLength(10),
       ]),
@@ -42,9 +49,15 @@ export class Step1Component implements OnInit {
     });
   }
   onSubmit() {
-    console.log(this.registerForm.value);
-    this.router.navigate(['/register/step2'], {
-      state: { data: this.registerForm.value },
+    this.API_payload = { email: this.registerForm.value.email };
+    this.authService.checkEmail(this.API_payload).subscribe((res: any) => {
+      if (res === false) {
+        this.router.navigate(['/register/step2'], {
+          state: { data: this.registerForm.value },
+        });
+      } else {
+        this.email?.setErrors({ emailExists: true });
+      }
     });
   }
 }

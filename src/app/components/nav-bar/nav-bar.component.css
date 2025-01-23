@@ -36,3 +36,8 @@
     border-radius: 4px;
     cursor: pointer;
   }
+
+  .user{
+    color: white;
+    margin: 20px;
+  }

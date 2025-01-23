@@ -14,11 +14,10 @@ export class NavBarComponent {
 
   @Input() buttonName: string = 'Sign In';
 
+  name = 'vijeth';
+
   signIn() {
     console.log('Signin clicked');
     this.router.navigate(['/login']);
-  }
-  navigateToHome() {
-    this.router.navigate(['/home']);
   }
 }

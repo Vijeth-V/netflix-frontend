@@ -1,4 +1,10 @@
 import { Component } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,9 +15,25 @@ import { Router } from '@angular/router';
   styleUrl: './mainpage.component.css',
 })
 export class MainpageComponent {
-  constructor(private router: Router) {}
+  homeForm!: FormGroup;
+
+  get email() {
+    return this.homeForm.get('email');
+  }
+  constructor(private router: Router, private fb: FormBuilder) {}
+
+  ngOnInit() {
+    this.homeForm = new FormGroup({
+      email: new FormControl('', Validators.required),
+    });
+  }
 
   register() {
-    this.router.navigate(['/register/step1']);
+    if (this.email) {
+      console.log('email', this.email.value);
+      this.router.navigate(['/register/step1'], {
+        state: { data: this.email.value },
+      });
+    }
   }
 }

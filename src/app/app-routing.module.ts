@@ -7,6 +7,7 @@ import { MovieDetailsComponent } from './components/movie-details/movie-details.
 import { Step1Component } from './components/register/step1/step1.component';
 import { Step2Component } from './components/register/step2/step2.component';
 import { Step3Component } from './components/register/step3/step3.component';
+import { authGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   { path: 'home', component: MainpageComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
       import('./components/movie-list/movie-list.module').then(
         (m) => m.MovieListModule
       ),
+    canActivate: [authGuard],
   },
 
   //Lazy Loading this module

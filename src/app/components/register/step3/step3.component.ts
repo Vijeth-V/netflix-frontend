@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-step3',
@@ -32,13 +33,13 @@ export class Step3Component implements OnInit {
 
   credentials: {} | undefined;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   selectedPlan: any = null;
 
   ngOnInit() {
-    let credentials = history.state.data;
-    console.log('Credentials from step3', credentials);
+    this.credentials = history.state.data;
+    console.log('Credentials from step3', this.credentials);
   }
 
   selectPlan(plan: any) {
@@ -48,8 +49,10 @@ export class Step3Component implements OnInit {
   // Make an auth API call here
   onSubmit() {
     if (this.selectedPlan) {
-      console.log('Selected Plan:', this.selectedPlan);
-      this.router.navigate(['/movieList']);
+      this.credentials = { ...this.credentials, role: this.selectedPlan.role };
+      console.log('credentials', this.credentials);
+      this.authService.signup(this.credentials).subscribe((res: any) => {});
+      // this.router.navigate(['/movieList']);
     } else {
       alert('Please select a plan before submitting.');
     }
