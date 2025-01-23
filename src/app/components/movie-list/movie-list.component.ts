@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-movie-list',
@@ -10,10 +11,19 @@ import { MovieService } from '../../services/movie.service';
 })
 export class MovieListComponent {
   movies: [] = [];
-  constructor(private movieService: MovieService) {}
+  username: string = '';
+
+  constructor(
+    private movieService: MovieService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.getMovies();
+    if (this.authService.userValue?.username) {
+      this.username = this.authService.userValue?.username;
+      console.log('authService in movie list page', this.username);
+    }
   }
 
   getMovies() {

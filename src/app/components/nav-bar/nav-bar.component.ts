@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,14 +11,16 @@ import { LoginComponent } from '../login/login.component';
   styleUrl: './nav-bar.component.css',
 })
 export class NavBarComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   @Input() buttonName: string = 'Sign In';
-
-  name = 'vijeth';
+  @Input() userName: string = '';
 
   signIn() {
-    console.log('Signin clicked');
-    this.router.navigate(['/login']);
+    if (this.buttonName === 'Sign In') {
+      this.router.navigate(['/login']);
+    } else {
+      this.authService.logout();
+    }
   }
 }

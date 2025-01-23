@@ -16,7 +16,16 @@ export class AuthService {
   private authServerPath = 'http://localhost:5566/api/v1/auth';
   private jwtHelper = new JwtHelperService();
 
-  userValue: {} | undefined;
+  userValue:
+    | {
+        id: string;
+        username: string;
+        email: string;
+        role: string;
+        tmdb_key: string;
+        jwtToken: string;
+      }
+    | undefined;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -53,6 +62,12 @@ export class AuthService {
   //Verifies if its a new user during signup
   checkEmail(email: object) {
     return this.http.post(`${this.authServerPath}/check-email`, email);
+  }
+
+  //logout function
+  logout() {
+    localStorage.removeItem('access_token');
+    this.router.navigate(['/home']);
   }
 
   //Decoding and storing access token
