@@ -1,6 +1,7 @@
 export interface AuthDto {
   accessToken: string;
-  role: UserRole;
+  // role: UserRole;
+  role: string;
 }
 
 export class AppUserAuth {

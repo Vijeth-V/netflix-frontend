@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-mainpage',
@@ -20,9 +21,20 @@ export class MainpageComponent {
   get email() {
     return this.homeForm.get('email');
   }
-  constructor(private router: Router, private fb: FormBuilder) {}
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
+    if (localStorage.getItem('access_token')) {
+      console.log('User already logged in');
+      const accessToken = localStorage.getItem('access_token') ?? '';
+      const role = localStorage.getItem('role') || 'USER';
+      this.authService.getUserValue({ accessToken, role });
+      this.router.navigate(['/movieList']);
+    }
     this.homeForm = new FormGroup({
       email: new FormControl('', Validators.required),
     });

@@ -19,11 +19,11 @@ export class MovieListComponent {
   ) {}
 
   ngOnInit(): void {
-    this.getMovies();
     if (this.authService.userValue?.username) {
       this.username = this.authService.userValue?.username;
       console.log('authService in movie list page', this.username);
     }
+    this.getMovies();
   }
 
   getMovies() {

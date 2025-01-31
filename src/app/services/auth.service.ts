@@ -73,7 +73,20 @@ export class AuthService {
   //Decoding and storing access token
   private setUserValueByToken({ accessToken, role }: AuthDto) {
     localStorage.setItem('access_token', accessToken);
+    localStorage.setItem('role', role);
 
+    this.getUserValue({ accessToken, role });
+
+    // const { id, username, email, tmdb_key, exp } =
+    //   this.jwtHelper.decodeToken(accessToken);
+
+    // this.userValue = {
+    //   ...{ id, username, email, role, tmdb_key },
+    //   jwtToken: accessToken,
+    // };
+  }
+
+  getUserValue({ accessToken, role }: AuthDto) {
     const { id, username, email, tmdb_key, exp } =
       this.jwtHelper.decodeToken(accessToken);
 

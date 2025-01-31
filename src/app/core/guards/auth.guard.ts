@@ -14,7 +14,7 @@ export class authGuard {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.authService.userValue) {
+    if (this.authService.userValue || localStorage.getItem('access_token')) {
       return true;
     } else {
       this.router.navigate(['/']);
