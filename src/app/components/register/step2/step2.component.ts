@@ -33,7 +33,7 @@ export class Step2Component implements OnInit {
     this.tmdbForm = new FormGroup({
       userName: new FormControl('', [
         Validators.required,
-        Validators.minLength(5),
+        Validators.maxLength(10),
       ]),
       apiKey: new FormControl('', [
         Validators.required,
@@ -56,7 +56,7 @@ export class Step2Component implements OnInit {
         email: this.registrationData.Email,
         password: this.registrationData.Password,
         username: this.tmdbForm.value.userName,
-        // tmdb_key: this.tmdbForm.value.apiKey,
+        tmdb_key: this.tmdbForm.value.apiKey,
       };
       this.router.navigate(['/register/step3'], {
         state: { data: credentials },

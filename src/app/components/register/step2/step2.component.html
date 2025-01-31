@@ -20,8 +20,8 @@
           <div [hidden]="!userName?.errors?.['required']">
             Username is required
           </div>
-          <div [hidden]="!userName?.errors?.['minlength']">
-            Minimum length is 5
+          <div [hidden]="!userName?.errors?.['maxLength']">
+            Username Max length is 10
           </div>
         </div>
       </div>

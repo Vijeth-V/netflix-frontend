@@ -44,6 +44,7 @@ export class Step1Component implements OnInit {
       email: new FormControl(history.state.data, [
         Validators.required,
         Validators.minLength(10),
+        Validators.email,
       ]),
       pwd: new FormControl('', [Validators.required, Validators.minLength(8)]),
     });
@@ -56,7 +57,9 @@ export class Step1Component implements OnInit {
           state: { data: this.registerForm.value },
         });
       } else {
-        this.email?.setErrors({ emailExists: true });
+        // this.email?.setErrors({ emailExists: true });
+        console.log('Email Exists');
+        alert('This email is already registered');
       }
     });
   }
