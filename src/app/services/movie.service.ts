@@ -7,13 +7,15 @@ import {
 } from '../core/interfaces/movies.interface';
 
 import { Subject, tap } from 'rxjs';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MovieService {
   baseUrl = 'https://api.themoviedb.org/3/movie/';
-  api_key = '7f91731a4b8758467428c3dd21f0adf4';
+  // api_key = '7f91731a4b87584';
+  api_key = environment.TMBD_KEY;
 
   movieSubject$ = new Subject<movieRes>();
   movieDetailsSubject$ = new Subject();
