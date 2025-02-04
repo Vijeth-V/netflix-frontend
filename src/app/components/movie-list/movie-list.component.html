@@ -4,5 +4,13 @@
     <div class="item" *ngFor="let movie of movies">
       <app-movie-item [movie]="movie"></app-movie-item>
     </div>
+
+    <div
+      class="list"
+      infiniteScroll
+      [infiniteScrollDistance]="1"
+      [infiniteScrollThrottle]="5"
+      (scrolled)="onScroll()"
+    ></div>
   </div>
 </div>

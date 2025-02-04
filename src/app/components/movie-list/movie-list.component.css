@@ -4,6 +4,7 @@
 
   .list{
     display: flex;
+    color: black;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;

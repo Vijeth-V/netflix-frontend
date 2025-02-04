@@ -6,7 +6,7 @@ import {
   movieDetails,
 } from '../core/interfaces/movies.interface';
 
-import { Subject, tap } from 'rxjs';
+import { BehaviorSubject, Subject, tap } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 
 @Injectable({
@@ -17,23 +17,28 @@ export class MovieService {
   // api_key = '7f91731a4b87584';
   api_key = environment.TMBD_KEY;
 
-  movieSubject$ = new Subject<movieRes>();
+  currentPage = 1;
+
+  private movieList: movieDetails[] = [];
+  movieSubject$ = new BehaviorSubject(this.movieList);
   movieDetailsSubject$ = new Subject();
   movieVideoSubject$ = new Subject();
 
   constructor(private http: HttpClient) {}
 
-  getMovies(page: number) {
+  getMovies() {
     return this.http
       .get<movieRes>(
-        `${this.baseUrl}popular?api_key=${this.api_key}&page=${page}`
+        `${this.baseUrl}popular?api_key=${this.api_key}&page=${this.currentPage}`
       )
       .pipe(
         tap((res: any) => {
-          this.movieSubject$.next(res);
+          this.movieList = [...this.movieList];
+          this.movieSubject$.next(this.movieList);
         })
       );
   }
+
   // https://api.themoviedb.org/3/movie/{movie_id}/videos
   getMovieDetails(id: number) {
     return this.http

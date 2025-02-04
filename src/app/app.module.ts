@@ -21,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { YouTubePlayer } from '@angular/youtube-player';
+import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { YouTubePlayer } from '@angular/youtube-player';
     MatFormFieldModule,
     MatInputModule,
     YouTubePlayer,
+    InfiniteScrollDirective,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

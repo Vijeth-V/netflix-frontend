@@ -10,8 +10,9 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './movie-list.component.css',
 })
 export class MovieListComponent {
-  movies: [] = [];
+  movies: any[] = [];
   username: string = '';
+  currentPage = 1;
 
   constructor(
     private movieService: MovieService,
@@ -23,14 +24,20 @@ export class MovieListComponent {
       this.username = this.authService.userValue?.username;
       console.log('authService in movie list page', this.username);
     }
-    this.getMovies();
+    this.getMovies(1);
   }
 
-  getMovies() {
-    console.log('getMovies list component');
-    this.movieService.getMovies(1).subscribe((res: any) => {
+  getMovies(page: number) {
+    console.log('getMovies list component', page);
+    this.movieService.getMovies().subscribe((res: any) => {
       console.log(res);
-      this.movies = res.results;
+      this.movies = [...this.movies, ...res.results];
+      console.log('this.movies', this.movies);
     });
+  }
+
+  onScroll() {
+    console.log('scrolled!!');
+    this.getMovies(++this.currentPage);
   }
 }
