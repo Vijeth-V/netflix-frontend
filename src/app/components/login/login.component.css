@@ -98,8 +98,9 @@
   
   .help-link,
   .signup-link {
-    color: white;
+    color: rgb(103, 125, 250);
     text-decoration: none;
+    cursor: pointer;
   }
   
   .help-link:hover,
