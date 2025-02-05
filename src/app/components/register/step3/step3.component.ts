@@ -48,13 +48,13 @@ export class Step3Component implements OnInit {
 
   // Make an auth API call here
   onSubmit() {
-    if (this.selectedPlan) {
+    if (this.selectedPlan && this.credentials) {
       this.credentials = { ...this.credentials, role: 'USER' };
       console.log('credentials', this.credentials);
       this.authService.signup(this.credentials).subscribe((res: any) => {});
       // this.router.navigate(['/movieList']);
     } else {
-      alert('Please select a plan before submitting.');
+      this.authService.updateRole();
     }
   }
 }

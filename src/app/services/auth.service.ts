@@ -64,9 +64,18 @@ export class AuthService {
     return this.http.post(`${this.authServerPath}/check-email`, email);
   }
 
+  updateRole() {
+    if (localStorage.getItem('role') === 'USER') {
+      localStorage.setItem('role', 'ADMIN');
+      this.router.navigate(['/movieList']);
+    } else {
+      this.router.navigate(['/movieList']);
+    }
+  }
+
   //logout function
   logout() {
-    localStorage.removeItem('access_token');
+    localStorage.clear();
     this.router.navigate(['/home']);
   }
 

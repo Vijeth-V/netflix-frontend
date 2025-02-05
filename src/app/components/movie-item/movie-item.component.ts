@@ -14,15 +14,24 @@ import { ScrollPositionService } from '../../services/scroll-position.service';
 export class MovieItemComponent {
   @Input() movie: any = [];
   constructor(
-    private movieService: MovieService,
+    // private movieService: MovieService,
     private router: Router,
     private scrollService: ScrollPositionService
   ) {}
 
   movieDetails(movie: any) {
     console.log('Movie Details Triggered', movie);
-    this.router.navigate(['/movieDetails'], { queryParams: { id: movie.id } });
-    this.onWindowScroll();
+    const role = localStorage.getItem('role');
+    if (role === 'USER') {
+      console.log('USER logged IN');
+      this.router.navigate(['/register/step3']);
+    } else {
+      console.log('Admin logged IN');
+      this.router.navigate(['/movieDetails'], {
+        queryParams: { id: movie.id },
+      });
+      this.onWindowScroll();
+    }
   }
 
   onWindowScroll() {
