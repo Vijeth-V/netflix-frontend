@@ -1,5 +1,5 @@
 <div class="header">
-  <div class="logo"></div>
+  <div (click)="navigateToHome()" class="logo"></div>
   <ul>
     <span *ngIf="userName" class="user">{{ userName }}</span>
     <button (click)="signIn()" class="sign-in">{{ buttonName }}</button>

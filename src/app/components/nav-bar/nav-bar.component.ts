@@ -36,4 +36,7 @@ export class NavBarComponent implements OnInit {
       this.authService.logout();
     }
   }
+  navigateToHome() {
+    this.router.navigate(['/']);
+  }
 }
