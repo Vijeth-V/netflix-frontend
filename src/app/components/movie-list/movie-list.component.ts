@@ -1,6 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/Auth/auth.service';
 import { ScrollPositionService } from '../../services/scroll-position.service';
 
 @Component({

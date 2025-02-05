@@ -5,7 +5,7 @@ import {
   AppUserAuth,
   AuthDto,
   LoginDto,
-} from '../core/interfaces/auth.interface';
+} from '../../core/interfaces/auth.interface';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 
