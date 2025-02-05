@@ -52,7 +52,6 @@ export class Step3Component implements OnInit {
       this.credentials = { ...this.credentials, role: 'USER' };
       console.log('credentials', this.credentials);
       this.authService.signup(this.credentials).subscribe((res: any) => {});
-      // this.router.navigate(['/movieList']);
     } else {
       this.authService.updateRole();
     }

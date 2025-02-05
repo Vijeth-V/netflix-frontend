@@ -10,11 +10,24 @@ import { AuthService } from '../../services/auth/auth.service';
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.css',
 })
-export class NavBarComponent {
+export class NavBarComponent implements OnInit {
+  userName: string = '';
+  buttonName: string = 'Sign In';
+
   constructor(private router: Router, private authService: AuthService) {}
 
-  @Input() buttonName: string = 'Sign In';
-  @Input() userName: string = '';
+  ngOnInit() {
+    this.authService.userValue$.subscribe((user) => {
+      if (user?.username) {
+        console.log('Nav bar component triggered ');
+        this.buttonName = 'Log out';
+        this.userName = user.username;
+      } else {
+        this.buttonName = 'Sign In';
+        this.userName = '';
+      }
+    });
+  }
 
   signIn() {
     if (this.buttonName === 'Sign In') {

@@ -6,6 +6,7 @@ import {
 } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,12 +14,19 @@ import { AuthService } from '../../services/auth/auth.service';
 export class authGuard {
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.authService.userValue || localStorage.getItem('access_token')) {
-      return true;
-    } else {
-      this.router.navigate(['/']);
-      return false;
-    }
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean> {
+    return this.authService.userValue$.pipe(
+      map((user) => {
+        if (user || localStorage.getItem('access_token')) {
+          return true;
+        } else {
+          this.router.navigate(['/login']); // Redirect to login if not authenticated
+          return false;
+        }
+      })
+    );
   }
 }

@@ -64,7 +64,5 @@ export class LoginComponent implements OnInit {
         this.loginMsg = 'Invalid Login credentials check email ID and password';
       }
     );
-
-    // this.router.navigate(['/movieList']);
   }
 }

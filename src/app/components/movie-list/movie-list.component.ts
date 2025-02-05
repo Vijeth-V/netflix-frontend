@@ -22,12 +22,8 @@ export class MovieListComponent {
     private scrollService: ScrollPositionService
   ) {}
 
-  ngOnInit(): void {
-    if (this.authService.userValue?.username) {
-      this.username = this.authService.userValue?.username;
-      console.log('authService in movie list page', this.username);
-    }
-    // this.getMovies(1);
+  ngOnInit() {
+    this.authService.checkLoginStatus();
 
     // Retrieve stored movies and page number
     const storedMovies = this.scrollService.getMovies();

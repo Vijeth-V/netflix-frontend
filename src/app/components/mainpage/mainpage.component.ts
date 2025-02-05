@@ -17,6 +17,8 @@ import { AuthService } from '../../services/auth/auth.service';
 })
 export class MainpageComponent {
   homeForm!: FormGroup;
+  username: string = '';
+  actionName: string = 'Sign In';
 
   get email() {
     return this.homeForm.get('email');
@@ -30,10 +32,7 @@ export class MainpageComponent {
   ngOnInit() {
     if (localStorage.getItem('access_token')) {
       console.log('User already logged in');
-      const accessToken = localStorage.getItem('access_token') ?? '';
-      const role = localStorage.getItem('role') || 'USER';
-      this.authService.getUserValue({ accessToken, role });
-      this.router.navigate(['/movieList']);
+      this.authService.checkLoginStatus();
     }
     this.homeForm = new FormGroup({
       email: new FormControl('', Validators.required),

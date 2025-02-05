@@ -16,7 +16,7 @@ export class AuthService {
   private authServerPath = 'http://localhost:5566/api/v1/auth';
   private jwtHelper = new JwtHelperService();
 
-  userValue:
+  private userSubject = new BehaviorSubject<
     | {
         id: string;
         username: string;
@@ -25,7 +25,21 @@ export class AuthService {
         tmdb_key: string;
         jwtToken: string;
       }
-    | undefined;
+    | undefined
+  >(undefined);
+
+  userValue$ = this.userSubject.asObservable();
+
+  // userValue:
+  //   | {
+  //       id: string;
+  //       username: string;
+  //       email: string;
+  //       role: string;
+  //       tmdb_key: string;
+  //       jwtToken: string;
+  //     }
+  //   | undefined;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -76,6 +90,7 @@ export class AuthService {
   //logout function
   logout() {
     localStorage.clear();
+    this.userSubject.next(undefined);
     this.router.navigate(['/home']);
   }
 
@@ -85,23 +100,40 @@ export class AuthService {
     localStorage.setItem('role', role);
 
     this.getUserValue({ accessToken, role });
-
-    // const { id, username, email, tmdb_key, exp } =
-    //   this.jwtHelper.decodeToken(accessToken);
-
-    // this.userValue = {
-    //   ...{ id, username, email, role, tmdb_key },
-    //   jwtToken: accessToken,
-    // };
   }
 
   getUserValue({ accessToken, role }: AuthDto) {
-    const { id, username, email, tmdb_key, exp } =
+    //   const { id, username, email, tmdb_key, exp } =
+    //     this.jwtHelper.decodeToken(accessToken);
+
+    //   this.userValue = {
+    //     ...{ id, username, email, role, tmdb_key },
+    //     jwtToken: accessToken,
+    //   };
+    // }
+    if (!accessToken) {
+      this.userSubject.next(undefined);
+      return;
+    }
+
+    const { id, username, email, tmdb_key } =
       this.jwtHelper.decodeToken(accessToken);
 
-    this.userValue = {
-      ...{ id, username, email, role, tmdb_key },
+    const userData = {
+      id,
+      username,
+      email,
+      role,
+      tmdb_key,
       jwtToken: accessToken,
     };
+
+    this.userSubject.next(userData);
+  }
+
+  checkLoginStatus() {
+    const accessToken = localStorage.getItem('access_token') ?? '';
+    const role = localStorage.getItem('role') || 'USER';
+    this.getUserValue({ accessToken, role });
   }
 }
