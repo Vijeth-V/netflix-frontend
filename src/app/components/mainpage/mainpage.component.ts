@@ -40,11 +40,15 @@ export class MainpageComponent {
   }
 
   register() {
-    if (this.email) {
-      console.log('email', this.email.value);
-      this.router.navigate(['/register/step1'], {
-        state: { data: this.email.value },
-      });
+    if (localStorage.getItem('access_token')) {
+      this.router.navigate(['/movieList']);
+    } else {
+      if (this.email) {
+        console.log('email', this.email.value);
+        this.router.navigate(['/register/step1'], {
+          state: { data: this.email.value },
+        });
+      }
     }
   }
 }
