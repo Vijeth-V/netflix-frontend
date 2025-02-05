@@ -41,3 +41,10 @@
     color: white;
     margin: 20px;
   }
+
+  .profile-icon {
+    font-size: 20px;
+    margin-right: 8px;
+    color: white; 
+    vertical-align: middle;
+  }

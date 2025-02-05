@@ -1,7 +1,9 @@
 <div class="header">
   <div (click)="navigateToHome()" class="logo"></div>
   <ul>
-    <span *ngIf="userName" class="user">{{ userName }}</span>
+    <span *ngIf="userName" class="user"
+      ><i class="fas fa-user-circle profile-icon"></i>{{ userName }}</span
+    >
     <button (click)="signIn()" class="sign-in">{{ buttonName }}</button>
   </ul>
 </div>
