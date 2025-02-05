@@ -13,8 +13,7 @@ import { environment } from '../../environments/environment.development';
   providedIn: 'root',
 })
 export class MovieService {
-  baseUrl = 'https://api.themoviedb.org/3/movie/';
-  // api_key = '7f91731a4b87584';
+  baseUrl = environment.BASE_URL;
   api_key = environment.TMBD_KEY;
 
   currentPage = 1;
