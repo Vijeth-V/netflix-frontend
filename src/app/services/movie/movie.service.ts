@@ -4,10 +4,10 @@ import {
   movieRes,
   Result,
   movieDetails,
-} from '../core/interfaces/movies.interface';
+} from '../../core/interfaces/movies.interface';
 
 import { BehaviorSubject, Subject, tap } from 'rxjs';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
